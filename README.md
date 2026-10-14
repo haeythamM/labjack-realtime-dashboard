@@ -1,123 +1,188 @@
 # LabJack U3-HV Realtime Dashboard
 
-LabJack U3-HV Realtime Dashboard is an in-progress full-stack IoT and data acquisition project focused on telemetry monitoring, structured sensor data flow, and dashboard-ready time-series visualization.
+LabJack U3-HV Realtime Dashboard is a completed full-stack IoT and data acquisition software project designed for real-time telemetry monitoring, sensor data processing, storage, and interactive visualization.
 
-The project is designed to move beyond simple data display by separating the data acquisition layer, validation logic, API flow, and frontend monitoring interface.
+The system integrates a Python/Flask backend, SQLite database, Socket.IO communication, and a React dashboard. It supports simulated telemetry for development and demonstration, with an optional integration path for LabJack U3-HV hardware.
 
 ## Project Status
 
-In progress.
+**Completed**
 
-This repository currently includes:
+The core software system has been developed, including:
 
-* A frontend dashboard for telemetry visualization
-* A backend / mock API layer for development and testing
-* A data flow designed for future LabJack U3-HV hardware integration
+- A React dashboard for real-time telemetry visualization
+- A Python/Flask backend with REST API endpoints
+- Real-time sensor updates using Flask-SocketIO
+- SQLite database integration for recording sensor measurements
+- Historical data analysis and visualization
+- Simulated sensor data for testing and demonstration
+- Optional LabJack U3-HV connection logic for hardware-based acquisition
 
-The current implementation uses simulated telemetry during development so the dashboard, data shape, and monitoring workflow can be refined before final hardware capture.
+The project demonstrates a complete telemetry workflow, from generating or acquiring sensor readings to storing, processing, and displaying measurements.
+
+The hosted demonstration operates using simulated sensor data, allowing the application to function without physical LabJack hardware.
 
 ## Problem
 
-Many data acquisition demos show raw readings without a clear structure for sampling, validation, calibration, state handling, logging, or long-term monitoring.
+Data acquisition applications require more than displaying sensor readings. Effective monitoring systems need structured data collection, communication between system components, historical storage, and accessible visualization.
 
-This project explores how telemetry data can be structured from the start so the system can later support persistence, alerts, calibration workflows, and remote monitoring.
+This project addresses these requirements through a modular architecture separating the data acquisition layer, backend services, database operations, and frontend monitoring interface.
 
-## Goal
+## Project Objectives
 
-Build an engineering-style telemetry platform where LabJack U3-HV readings can be collected, normalized, validated, stored, and displayed through a clean realtime dashboard interface.
+The project was developed to demonstrate the integration of hardware-oriented data acquisition principles with modern full-stack web technologies.
+
+Its objectives include:
+
+- Building a structured telemetry monitoring system
+- Implementing real-time communication between backend and frontend
+- Storing sensor measurements for historical analysis
+- Providing interactive visualization of telemetry data
+- Supporting hardware-independent testing through simulated data
+- Establishing an optional integration path for LabJack U3-HV hardware
 
 ## Features
 
-* Realtime-style telemetry dashboard
-* Mock API for frontend development and testing
-* Structured data acquisition workflow
-* Live sensor update flow
-* Time-series-ready data model
-* Dashboard UI for monitoring sensor and channel values
-* Designed for future logging, calibration, alerting, and export workflows
+- Real-time telemetry dashboard
+- Python/Flask REST API
+- Flask-SocketIO live data streaming
+- SQLite sensor data storage
+- Historical measurement analysis
+- Interactive React frontend
+- Time-series charts and monitoring interface
+- Simulated telemetry generation
+- Optional LabJack U3-HV acquisition logic
+- Modular frontend and backend architecture
 
 ## Tech Stack
 
-* LabJack U3-HV
-* Python
-* Flask
-* Flask-SocketIO
-* SQLite
-* REST API
-* Socket.IO
-* React
-* Vite
-* Tailwind CSS
-* Chart.js
-* Data acquisition workflow
-* Time-series telemetry structure
+**Hardware and Instrumentation**
+- LabJack U3-HV
+- Data acquisition concepts
+- Analog input monitoring
+
+**Backend**
+- Python
+- Flask
+- Flask-SocketIO
+- REST API
+- SQLite
+- Socket.IO
+
+**Frontend**
+- React
+- Vite
+- Tailwind CSS
+- Chart.js
 
 ## Repository Structure
 
 ```text
 labjack-realtime-dashboard/
-├── LABJACK-Mock-API/      # Backend / mock API for telemetry simulation and analysis
-├── LABJACK_FRONTEND/      # Frontend dashboard interface
+├── LABJACK-Mock-API/
+│   └── Flask backend, REST APIs,
+│       SQLite and telemetry simulation
+├── LABJACK_FRONTEND/
+│   └── React telemetry dashboard
 └── README.md
 ```
 
-Each folder contains its own README with setup instructions and implementation details.
+Each directory includes documentation and setup instructions.
 
-## Architecture
+## System Architecture
 
 ```text
-Sensors / LabJack U3-HV / Mock Input
-        ↓
-Acquisition API / Backend
-        ↓
-Validation + Normalized Readings
-        ↓
-Stored + Live Telemetry Data
-        ↓
-Frontend Dashboard
-        ↓
-Time-Series Visualization / Monitoring UI
+LabJack U3-HV / Simulated Sensor Data
+                 |
+                 v
+       Python/Flask Backend
+                 |
+          Data Processing
+                 |
+          +------+------+
+          |             |
+          v             v
+     SQLite DB     Socket.IO / API
+          |             |
+          +------+------+
+                 |
+                 v
+         React Dashboard
+                 |
+                 v
+       Realtime Visualization
+       and Historical Analysis
 ```
 
 ## How It Works
 
-1. The backend either generates mock readings or reads from a LabJack device when hardware mode is enabled.
-2. Sensor values are normalized into a consistent telemetry data shape.
-3. Live readings are emitted to the frontend through Socket.IO.
-4. Readings can be stored in a local SQLite database.
-5. The frontend displays current values, live updates, and chart-based analysis.
-6. The dashboard is structured so future calibration, alerting, logging, and export features can be added cleanly.
+1. The backend generates simulated telemetry readings or attempts to acquire measurements from a connected LabJack device when hardware mode is enabled.
+2. Sensor values are processed into a structured format.
+3. Flask-SocketIO transmits live measurements to connected frontend clients.
+4. Measurements are recorded in a local SQLite database.
+5. REST API endpoints provide access to current sensor values and stored-data analysis.
+6. The React dashboard presents telemetry measurements through interactive monitoring components and charts.
 
-## Current Implementation
+## Implementation
 
-The project currently focuses on the frontend dashboard and backend/mock API workflow.
+The completed software implementation includes separate frontend and backend components.
 
-This allows the interface, data structure, realtime behavior, and monitoring logic to be developed before final LabJack U3-HV hardware integration.
+**Backend Implementation**
 
-## Planned Improvements
+- Flask application with REST API endpoints
+- Socket.IO communication for live telemetry updates
+- SQLite database initialization and measurement storage
+- Sensor simulation for hardware-independent operation
+- Optional LabJack connection and acquisition functions
+- Historical measurement analysis using stored data
 
-* Connect directly to LabJack U3-HV hardware
-* Add calibration workflow
-* Add persistent logging improvements
-* Add alert thresholds
-* Add exportable telemetry records
-* Improve deployment workflow
-* Add final screenshots and demo documentation
+**Frontend Implementation**
+
+- React-based telemetry dashboard
+- Live measurement visualization
+- Sensor monitoring interface
+- Chart-based data presentation
+- Integration with backend telemetry services
+
+## Hardware Integration
+
+The backend includes connection logic for the LabJack U3-HV using the Python `u3` library.
+
+When configured for hardware operation, the application attempts to read measurements from the connected device.
+
+When hardware access is unavailable, the application can operate using simulated readings.
+
+This architecture allows the software dashboard, API communication, database, and visualization workflow to be demonstrated independently of physical hardware.
+
+## Possible Future Enhancements
+
+The completed project can be extended with additional capabilities, including:
+
+- Hardware calibration workflows
+- Configurable alert thresholds
+- Advanced data export functionality
+- Expanded historical reporting
+- Additional sensor channels
+- Enhanced deployment and monitoring options
+
+These enhancements are optional and are not required for the current software implementation.
 
 ## Setup
 
-See the README files inside each project folder for setup details:
+Installation and configuration instructions are available in the individual project directories:
 
-* `LABJACK-Mock-API/README.md`
-* `LABJACK_FRONTEND/README.md`
+- `LABJACK-Mock-API/README.md`
+- `LABJACK_FRONTEND/README.md`
 
-## Demo
+## Live Demo
 
-The project is documented as part of my dedicated IoT portfolio:
+**Frontend Dashboard:**  
+https://labjack-frontend.vercel.app/
 
-```text
+**IoT Portfolio:**  
 https://iot.haeytham.dev/projects/labjack
-```
+
+The hosted demo uses simulated telemetry data.
 
 ## Author
 
@@ -125,6 +190,6 @@ Haeytham Almalak
 
 ## Notice
 
-LabJack and LabJack U3-HV are product names of their respective owner.
+LabJack and LabJack U3-HV are trademarks or product names of their respective owner.
 
-This project is an independent portfolio project and is not affiliated with or endorsed by LabJack.
+This is an independent engineering and software development portfolio project and is not affiliated with or endorsed by LabJack.
